@@ -22,7 +22,7 @@ class ListModelMixin(object):
         return Response(serializer.data)
 
 
-class CassandraAdventureAPI(ListModelMixin, GenericAPIView):
+class CassandraAdventuresAPI(ListModelMixin, GenericAPIView):
     serializer_class = CassandraAdventureSerializer
     queryset = CassandraAdventuresModel.objects.allow_filtering()
 
