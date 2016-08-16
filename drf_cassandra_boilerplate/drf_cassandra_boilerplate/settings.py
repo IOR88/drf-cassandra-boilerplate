@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 3rd party libraries
+    'rest_framework',
     'django_cassandra_engine',
     # project libraries
     'api_example',
