@@ -78,7 +78,28 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    },
+    'cassandra': {
+        'ENGINE': 'django_cassandra_engine',
+        'NAME': 'db',
+        'HOST': 'cassandra',
+        'OPTIONS': {
+            'connection': {
+                'retry_connect': True,
+                'port': 9042,
+                'protocol_version': 4,
+
+            },
+            'replication': {
+                'strategy_class': 'SimpleStrategy',
+                'replication_factor': 1
+            },
+            'session': {
+                'default_timeout': 10,
+                'default_fetch_size': 10000
+            }
+        }
+    },
 }
 
 
