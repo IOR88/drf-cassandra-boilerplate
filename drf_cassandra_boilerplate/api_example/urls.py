@@ -16,9 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from .views import CassandraAdventureAPI
+from .views import CassandraAdventuresAPI
 
 urlpatterns = [
 
-    url(r'^api_example/', CassandraAdventureAPI.as_view())
+    url(r'^api_example/', CassandraAdventuresAPI.as_view())
 ]
