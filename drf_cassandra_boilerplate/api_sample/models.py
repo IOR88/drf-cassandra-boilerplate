@@ -8,7 +8,7 @@ class CassandraAdventuresModel(DjangoCassandraModel):
     __keyspace__ = 'db'
     adventure_id = cassandra_columns.UUID(primary_key=True, default=uuid.uuid4)
     adventure_desc = cassandra_columns.Text()
-    last_modified = cassandra_columns.DateTime()
+    last_modified = cassandra_columns.Date()
 
     class Meta:
         get_pk_field = 'adventure_id'
