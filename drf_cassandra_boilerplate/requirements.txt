@@ -1,4 +1,7 @@
-Django==1.10
-djangorestframework==3.4.4
 cassandra-driver==3.6
-django-cassandra-engine==0.11.0
+Django==1.10.1
+six
+coverage
+djangorestframework==3.4.6
+django-filter==0.14.0
+una-django-cassandra-engine==5.0.5

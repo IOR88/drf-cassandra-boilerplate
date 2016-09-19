@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+from cassandra import ConsistencyLevel
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django_cassandra_engine',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,9 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 3rd party libraries
     'rest_framework',
-    'django_cassandra_engine',
+    'django_filters',
     # project libraries
-    'api_example',
+    'api_sample',
+
 ]
 
 MIDDLEWARE = [
@@ -90,8 +93,7 @@ DATABASES = {
         'OPTIONS': {
             'connection': {
                 'retry_connect': True,
-                'port': 9042,
-                'protocol_version': 4,
+                'consistency': ConsistencyLevel.ALL
 
             },
             'replication': {
@@ -99,8 +101,7 @@ DATABASES = {
                 'replication_factor': 1
             },
             'session': {
-                'default_timeout': 10,
-                'default_fetch_size': 10000
+                'default_timeout': 15
             }
         }
     },
@@ -144,3 +145,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
+}
+
+CASSANDRA_FALLBACK_ORDER_BY_PYTHON = True
