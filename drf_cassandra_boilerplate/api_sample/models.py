@@ -25,3 +25,16 @@ class CassandraAdventuresModel_M(DjangoCassandraModel):
 
     class Meta:
         get_pk_field = 'adventure_id'
+
+
+class CassandraFamilyMember(DjangoCassandraModel):
+    __keyspace__ = 'db'
+    id = cassandra_columns.UUID(primary_key=True, default=uuid.uuid4)
+    first_name = cassandra_columns.Text(primary_key=True)
+    last_name = cassandra_columns.Text(primary_key=True)
+    favourite_number = cassandra_columns.Integer(required=False)
+    favourite_float_number = cassandra_columns.Float(partition_key=True)
+    created_on = cassandra_columns.DateTime()
+
+    class Meta:
+        get_pk_field = 'id'
